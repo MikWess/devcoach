@@ -37,16 +37,19 @@ The store also tracks misconceptions you've cleared, gaps you haven't addressed 
 
 ## Setup
 
-1. Clone this repo (or copy the files) into any project directory
-2. Open Claude Code in that directory
-3. Start a session — the coach will detect it's your first time and run a short intake
-4. Use `/plan`, `/create`, `/review`, `/learn` as slash commands
+One command from inside any project:
 
 ```bash
-git clone https://github.com/MikWess/devcoach.git
-cd devcoach
+curl -sL https://raw.githubusercontent.com/MikWess/devcoach/main/install.sh | bash
+```
+
+That's it. It drops the coach files into your project. Then:
+
+```bash
 claude
 ```
+
+The coach detects it's your first time, runs a short intake, and you're off. Use `/plan`, `/create`, `/review`, `/learn` as slash commands.
 
 ## Customization
 
