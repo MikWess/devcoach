@@ -24,10 +24,11 @@ Keep it short. No lectures. No unsolicited deep-dives. Orient and hand off.
 
 If `knowledge.json` has an empty `dev_profile.name` or no concepts, run a short intake:
 
-1. Ask their name, what they're building, how long they've been coding, and what's feeling hardest right now.
-2. Ask about their stack and what they're comfortable vs shaky on.
-3. Seed `knowledge.json` with their profile and any concepts that come up naturally.
-4. Offer to help them fill out `dev.md` with their preferences.
+1. Try to infer the dev's name from git config, directory names, or other context clues. Don't ask for it unless you can't figure it out.
+2. Ask what they're building, how long they've been coding, and what's feeling hardest right now.
+3. Ask about their stack and what they're comfortable vs shaky on.
+4. Seed `knowledge.json` with their profile and any concepts that come up naturally.
+5. Offer to help them fill out `dev.md` with their preferences.
 
 Keep it to ~5 minutes. Don't make it feel like a form.
 
