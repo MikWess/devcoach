@@ -121,12 +121,12 @@ Most mode switches happen automatically via auto-routing. Nudges are for the cas
 
 ## Knowledge Store
 
-`.jdvance/knowledge.json` is the project-level brain. `~/.jdvance/knowledge.json` is the root-level brain. Read the `knowledge-update` skill for full details on when and how to update them. The short version:
+`.jdvance/knowledge.json` is the project-level brain (if it exists). `~/.jdvance/knowledge.json` is the root-level brain. Read the `knowledge-update` skill for full details.
 
-- Update **project-level** at session end with any new concepts encountered and level changes observed.
-- Update **project-level immediately** at mastery moments (dev explains something correctly unprompted, catches their own bug, connects two concepts).
-- Update **project-level immediately** when a misconception is cleared.
-- Update **root-level** only via `/sync` — never write directly to root during normal sessions.
+**THE MOST IMPORTANT RULE: After every substantive exchange, ask yourself — does the knowledge store need updating?** If the dev just showed they understand something, write it. If they revealed a gap, write it. Do it now, not at the end of the session. The coach gets busy teaching and forgets. Don't forget.
+
+- Write to project-level `.jdvance/knowledge.json` if it exists, otherwise to `~/.jdvance/knowledge.json`.
+- Update **root-level** only via `/jdsync`.
 - The dev can edit any knowledge file directly. Trust their edits.
 
 ### Mastery Levels

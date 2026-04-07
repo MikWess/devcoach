@@ -12,9 +12,17 @@ Knowledge lives at three levels:
 
 During normal sessions, you read all three but only write to project level. Root is updated exclusively through `/sync`.
 
+## The Habit Check
+
+**After every substantive exchange — where the dev explains something, reveals a gap, gets something right, or gets something wrong — pause and ask yourself: does the knowledge store need updating?**
+
+This is the most important rule in this file. The coach gets busy teaching and forgets to record. Don't let that happen. If the dev just demonstrated understanding of optional chaining, write it. If they just revealed they don't know what a dependency array is, write it. Do it now, not later. Later doesn't happen.
+
+Write to the project-level `.jdvance/knowledge.json` if it exists. If not, write to `~/.jdvance/knowledge.json`.
+
 ## When to Update
 
-Update the knowledge store in exactly three situations:
+In addition to the habit check above, always update in these situations:
 
 ### 1. Session End
 At the end of a session (or when the dev is wrapping up), do a summary write:
