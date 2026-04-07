@@ -1,79 +1,36 @@
 # /jdmap — Map the Concept You're Learning
 
-Generate a visual concept map of **what the dev is currently trying to understand** — not their score, but how the pieces fit together and what they need to learn next.
+Generate a simple, clean visual showing how the concepts the dev is learning connect to each other. Think whiteboard sketch, not app.
+
+**Match the complexity of the visualization to the technical level of the user.** If they're a beginner, keep it dead simple — fewer nodes, plain language, no jargon in the labels. If they're more advanced, you can go deeper.
 
 ## How It Works
 
-1. Look at the current conversation context — what is the dev working on, learning about, or stuck on?
-2. Identify the core concepts involved and how they relate to each other.
-3. Build a dependency map: "you need to understand X before Y makes sense."
-4. If a knowledge store exists, check what the dev already understands (L2+) vs what's still fuzzy (L0-L1) and highlight accordingly.
-5. Organize the map from **where the dev is now** (bottom) flowing **up** to where they need to get (top). Learning flows upward.
-6. Generate the HTML and open it.
+1. Look at what the dev is currently working on or learning about in this conversation.
+2. Identify the core concepts and how they depend on each other.
+3. Generate a simple static HTML diagram and open it.
 
 ## What to Generate
 
-Create a single self-contained HTML file. Think **Mermaid diagram aesthetic** — clean, white, minimal, readable.
+A **simple, static HTML page**. No JavaScript. No interactivity. Just styled divs or an SVG diagram.
 
 ### Layout
-- **Top-down flow**: the goal/topic is at the top, prerequisites flow downward. The dev reads bottom-to-top as a learning path.
-- The **current topic** is the top node (highlighted with a soft blue background)
-- **Prerequisite concepts** branch downward — things you need to understand first
-- **Connections** are labeled arrows showing relationships: "requires", "uses", "enables", "builds on"
-- Tree-like structure, not a messy web. Keep it organized.
-
-### Node Content
-- Concept name (bold)
-- One-line description
-- Small badge showing the dev's level if tracked (L0/L1/L2/L3)
-
-### Node Styling by Understanding
-- **Solid fill, green left border**: dev understands this (L2+ in knowledge store)
-- **Solid fill, blue left border**: dev has seen this, still building (L1)
-- **Light gray fill, dashed border**: dev hasn't encountered this yet (L0 or not tracked)
-- **Light red fill, red left border**: identified gap
+- Top-down flow chart. Goal at top, prerequisites below.
+- Nodes are simple rounded boxes with: concept name + one-line description.
+- Arrows/lines connecting them with short relationship labels ("requires", "uses", "enables").
+- Keep it to **5-10 nodes max**. Less is more.
 
 ### Style
-- **White/light background** (#ffffff or #fafafa)
-- Light gray lines and borders (#e5e7eb)
-- Clean sans-serif font (system font stack)
-- Mermaid-like: boxy nodes, rounded corners, labeled arrows
-- Generous whitespace, nothing cramped
-- Title at top: "jdmap — [current topic]"
-- Subtitle: "learning path — read bottom to top"
-- No external dependencies, everything inline CSS/JS
-
-### Interactivity
-- Click a node to expand: 2-3 sentence explanation + how it connects to the main topic
-- Hover highlights the node and its direct connections
-- Nodes are draggable for rearranging
+- White background
+- Light borders (#e5e7eb), clean sans-serif font
+- Mermaid-like aesthetic — simple, boxy, readable
+- Title: "jdmap — [topic]"
+- **No JavaScript. Pure HTML/CSS only. Keep the file under 200 lines.**
 
 ## How to Display
 
-1. Write the HTML to `/tmp/jdmap-XXXXX.html` (timestamp or random suffix)
-2. Run `open /tmp/jdmap-XXXXX.html` to open in the default browser
+1. Write to `/tmp/jdmap-XXXXX.html`
+2. Run `open /tmp/jdmap-XXXXX.html`
 3. Tell the dev: "Concept map opened in your browser."
-
-## Examples
-
-If the dev is learning about `useCallback` in a React component:
-```
-                    ┌─────────────────┐
-                    │   useCallback   │  ← goal: understand this
-                    └────────┬────────┘
-                             │ requires
-                    ┌────────┴────────┐
-                    │  memoization    │
-                    └────────┬────────┘
-                             │ requires
-              ┌──────────────┼──────────────┐
-     ┌────────┴────────┐           ┌────────┴────────┐
-     │  re-renders     │           │ dependency arrays│
-     └────────┬────────┘           └─────────────────┘
-              │ requires
-     ┌────────┴────────┐
-     │  React state    │  ← dev already gets this (green)
-     └─────────────────┘
-```
 
 $ARGUMENTS
