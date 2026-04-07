@@ -58,14 +58,14 @@ One command from inside any project:
 curl -sL https://raw.githubusercontent.com/MikWess/jdvance/main/install.sh | bash
 ```
 
-That's it. It drops the coach files into your project and asks if you want to set up a global knowledge store. Then:
+That's it. It drops a `.jdvance/` folder into your project and installs a global `/jdvance` command. Then:
 
 ```bash
-cd your-project  # important: be inside the project directory
 claude
+/jdvance
 ```
 
-**Important:** Always start `claude` from inside the project directory. The coach loads from `.claude/CLAUDE.md` at session start — if you run `claude` from your home directory and navigate in later, it won't activate automatically. (It will offer to switch on if it detects the files mid-session, but starting inside the project is the cleanest experience.)
+Type `/jdvance` in any Claude Code session to activate the coach. It never touches your project's `.claude/` folder — works safely in any repo, even shared production codebases.
 
 ## Customization
 
@@ -88,28 +88,32 @@ Session-level flags work on any command:
 - `--deep` — take your time, go thorough
 - `--quiet` — minimal interruption
 
-Everything is editable. The skill files in `.claude/commands/` and `.claude/skills/` are plain markdown — change anything that doesn't work for you.
+Everything is editable. The files in `.jdvance/commands/` and `.jdvance/skills/` are plain markdown — change anything that doesn't work for you.
 
 ## File Structure
 
 ```
-~/.jdvance/
-  knowledge.json           ← root-level knowledge (global, optional)
+~/.claude/commands/
+  jdvance.md               ← global /jdvance command (installed once)
+
+~/.jdvance/                ← root-level (global, optional)
+  knowledge.json
+  dashboard.html
+  jdvance                  ← CLI for opening dashboard
 
 project/
-  .claude/
-    CLAUDE.md              ← always-on coach persona
+  .jdvance/                ← everything lives here, never touches .claude/
+    CLAUDE.md              ← coach persona
     commands/
       plan.md              ← /plan mode
       create.md            ← /create mode
       review.md            ← /review mode
       learn.md             ← /learn mode
-      sync.md              ← /sync — transfer & clean up
+      sync.md              ← /sync — save learnings
     skills/
-      knowledge-update.md  ← when/how knowledge stores update
-      socratic-method.md   ← teaching by questioning
-      youtube-search.md    ← surfacing video resources
-  .jdvance/
+      knowledge-update.md
+      socratic-method.md
+      youtube-search.md
     knowledge.json         ← project-level knowledge
   dev.md                   ← your personal preferences
   plan.json                ← current task plan (auto-generated)
@@ -118,10 +122,10 @@ project/
 ## Uninstall
 
 From inside a project:
-- `/sync` to save your learnings to root, then it removes all jdvance files
-- Or manually: `rm -rf .claude .jdvance dev.md plan.json`
+- `/sync --nuke` to save your learnings and remove all jdvance files
+- Or manually: `rm -rf .jdvance dev.md plan.json`
 
-To remove the global store: `rm -rf ~/.jdvance`
+To remove globally: `rm -rf ~/.jdvance ~/.claude/commands/jdvance.md`
 
 ## Philosophy
 
