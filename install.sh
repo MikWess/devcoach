@@ -31,9 +31,6 @@ cp "$TMPDIR/devcoach/dev.md" .
 mkdir -p .devcoach
 cp "$TMPDIR/devcoach/knowledge.json" .devcoach/knowledge.json
 
-# Clean up temp
-rm -rf "$TMPDIR"
-
 # Add devcoach files to .gitignore
 IGNORE_ENTRIES=(".devcoach/" "dev.md" "plan.json")
 if [ -f ".gitignore" ]; then
@@ -70,12 +67,23 @@ if [ ! -f "$HOME/.devcoach/knowledge.json" ]; then
 }
 ENDJSON
     echo "  Created ~/.devcoach/knowledge.json"
+    # Copy dashboard and CLI
+    cp "$TMPDIR/devcoach/dashboard.html" "$HOME/.devcoach/dashboard.html"
+    cp "$TMPDIR/devcoach/devcoach" "$HOME/.devcoach/devcoach"
+    chmod +x "$HOME/.devcoach/devcoach"
+    echo "  Installed dashboard and CLI to ~/.devcoach/"
+    echo ""
+    echo "  To open your dashboard anytime: ~/.devcoach/devcoach dashboard"
+    echo "  (or add ~/.devcoach to your PATH)"
   else
     echo "  Skipped. You can set this up later by running the installer again."
   fi
 else
   echo "  Global knowledge store found at ~/.devcoach/"
 fi
+
+# Clean up temp
+rm -rf "$TMPDIR"
 
 echo ""
 echo "devcoach installed. You now have:"

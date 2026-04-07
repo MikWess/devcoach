@@ -531,27 +531,35 @@
       reader.readAsText(file);
     }
 
-    // drag and drop
-    const dropZone = document.getElementById('dropZone');
+    // AUTO-LOAD: if __KNOWLEDGE_DATA__ is injected by the CLI, render immediately
+    // Otherwise fall back to drag-and-drop
+    const injectedData = typeof __KNOWLEDGE_DATA__ !== 'undefined' ? __KNOWLEDGE_DATA__ : null;
 
-    dropZone.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      dropZone.classList.add('active');
-    });
+    if (injectedData) {
+      render(injectedData);
+    } else {
+      // drag and drop fallback
+      const dropZone = document.getElementById('dropZone');
 
-    dropZone.addEventListener('dragleave', () => {
-      dropZone.classList.remove('active');
-    });
+      dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('active');
+      });
 
-    dropZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      dropZone.classList.remove('active');
-      if (e.dataTransfer.files.length) loadFile(e.dataTransfer.files[0]);
-    });
+      dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('active');
+      });
 
-    document.getElementById('fileInput').addEventListener('change', (e) => {
-      if (e.target.files.length) loadFile(e.target.files[0]);
-    });
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('active');
+        if (e.dataTransfer.files.length) loadFile(e.dataTransfer.files[0]);
+      });
+
+      document.getElementById('fileInput').addEventListener('change', (e) => {
+        if (e.target.files.length) loadFile(e.target.files[0]);
+      });
+    }
   </script>
 </body>
 </html>

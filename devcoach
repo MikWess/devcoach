@@ -1,0 +1,61 @@
+#!/bin/bash
+# devcoach CLI — lightweight commands for the devcoach system
+# Usage: devcoach dashboard
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+case "${1:-}" in
+  dashboard)
+    # Determine which knowledge file to use
+    # Priority: project level, then root level
+    if [ -f ".devcoach/knowledge.json" ]; then
+      KNOWLEDGE_FILE=".devcoach/knowledge.json"
+      echo "Loading project knowledge from .devcoach/knowledge.json"
+    elif [ -f "$HOME/.devcoach/knowledge.json" ]; then
+      KNOWLEDGE_FILE="$HOME/.devcoach/knowledge.json"
+      echo "Loading root knowledge from ~/.devcoach/knowledge.json"
+    else
+      echo "No knowledge.json found."
+      echo "  Project: .devcoach/knowledge.json"
+      echo "  Root:    ~/.devcoach/knowledge.json"
+      exit 1
+    fi
+
+    # Read knowledge data
+    KNOWLEDGE_DATA=$(cat "$KNOWLEDGE_FILE")
+
+    # Find the dashboard HTML template
+    # Check common locations
+    if [ -f "$SCRIPT_DIR/dashboard.html" ]; then
+      TEMPLATE="$SCRIPT_DIR/dashboard.html"
+    elif [ -f "$HOME/.devcoach/dashboard.html" ]; then
+      TEMPLATE="$HOME/.devcoach/dashboard.html"
+    else
+      echo "dashboard.html not found. Downloading..."
+      curl -sL https://raw.githubusercontent.com/MikWess/devcoach/main/dashboard.html -o /tmp/devcoach-dashboard-template.html
+      TEMPLATE="/tmp/devcoach-dashboard-template.html"
+    fi
+
+    # Inject data into HTML and write to temp file
+    TMPFILE=$(mktemp /tmp/devcoach-dashboard-XXXXXX.html)
+
+    # Insert the data script right before the closing </head> tag
+    DATA_SCRIPT="<script>var __KNOWLEDGE_DATA__ = $KNOWLEDGE_DATA;</script>"
+    sed "s|</head>|$DATA_SCRIPT</head>|" "$TEMPLATE" > "$TMPFILE"
+
+    echo "Opening dashboard..."
+    open "$TMPFILE" 2>/dev/null || xdg-open "$TMPFILE" 2>/dev/null || echo "Open $TMPFILE in your browser"
+    ;;
+
+  *)
+    echo "devcoach — your senior dev in the terminal"
+    echo ""
+    echo "Commands:"
+    echo "  dashboard    Open the knowledge dashboard in your browser"
+    echo ""
+    echo "To install into a project:"
+    echo "  curl -sL https://raw.githubusercontent.com/MikWess/devcoach/main/install.sh | bash"
+    ;;
+esac
