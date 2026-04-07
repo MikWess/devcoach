@@ -29,7 +29,7 @@ cp "$TMPDIR/jdvance/dev.md" .
 
 # Create project-level knowledge store
 mkdir -p .jdvance
-cp "$TMPDIR/jdvance/knowledge.json" .jdvance/knowledge.json
+cp "$TMPDIR/jdvance/.jdvance/knowledge.json" .jdvance/knowledge.json
 
 # Add jdvance files to .gitignore
 IGNORE_ENTRIES=(".jdvance/" "dev.md" "plan.json")
