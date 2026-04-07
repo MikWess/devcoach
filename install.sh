@@ -4,17 +4,28 @@
 
 set -e
 
-echo "Installing jdvance into $(pwd)..."
+# Colors
+ORANGE='\033[38;5;208m'
+DIM='\033[2m'
+BOLD='\033[1m'
+GREEN='\033[32m'
+RESET='\033[0m'
+
+echo ""
+echo -e "${ORANGE}${BOLD}  J.D. VANCE${RESET}"
+echo -e "${DIM}  Junior Dev — Driven Via Agentic Native Claude Education${RESET}"
+echo ""
+echo -e "  Installing into ${BOLD}$(pwd)${RESET}..."
+echo ""
 
 # Check if .claude/CLAUDE.md already exists
 if [ -f ".claude/CLAUDE.md" ]; then
-  echo ""
-  echo "Warning: .claude/CLAUDE.md already exists in this directory."
-  echo "jdvance will overwrite your .claude/ folder."
-  read -p "Continue? (y/n) " -n 1 -r </dev/tty
+  echo -e "  ${ORANGE}Warning:${RESET} .claude/CLAUDE.md already exists."
+  echo -e "  jdvance will overwrite your .claude/ folder."
+  read -p "  Continue? (y/n) " -n 1 -r </dev/tty
   echo ""
   if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    echo "Aborted."
+    echo "  Aborted."
     exit 1
   fi
 fi
@@ -40,22 +51,22 @@ if [ -f ".gitignore" ]; then
 else
   printf '%s\n' "${IGNORE_ENTRIES[@]}" > .gitignore
 fi
-echo "  Added .jdvance/, dev.md, and plan.json to .gitignore"
+echo -e "  ${GREEN}+${RESET} Added .jdvance/, dev.md, and plan.json to .gitignore"
 
 # Ask about global knowledge store
 if [ ! -f "$HOME/.jdvance/knowledge.json" ]; then
   echo ""
-  echo "Want jdvance to remember you across projects?"
+  echo -e "  ${ORANGE}${BOLD}Want jdvance to remember you across projects?${RESET}"
   echo ""
-  echo "This creates a small folder at $HOME/.jdvance/ containing:"
-  echo "  - knowledge.json  (your concept mastery, starts empty)"
-  echo "  - dashboard.html  (visualize your progress)"
-  echo "  - jdvance CLI     (open dashboard from anywhere)"
+  echo -e "  This creates a small folder at ${BOLD}$HOME/.jdvance/${RESET} containing:"
+  echo -e "    ${DIM}-${RESET} knowledge.json  ${DIM}(your concept mastery, starts empty)${RESET}"
+  echo -e "    ${DIM}-${RESET} dashboard.html  ${DIM}(visualize your progress)${RESET}"
+  echo -e "    ${DIM}-${RESET} jdvance CLI     ${DIM}(open dashboard from anywhere)${RESET}"
   echo ""
-  echo "When you /sync, learnings transfer here so you never start from zero."
-  echo "To remove later: rm -rf ~/.jdvance"
+  echo -e "  When you ${BOLD}/sync${RESET}, learnings transfer here so you never start from zero."
+  echo -e "  ${DIM}To remove later: rm -rf ~/.jdvance${RESET}"
   echo ""
-  read -p "Set up global knowledge store? (y/n) " -n 1 -r </dev/tty
+  read -p "  Set up global knowledge store? (y/n) " -n 1 -r </dev/tty
   echo ""
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     mkdir -p "$HOME/.jdvance"
@@ -71,32 +82,39 @@ if [ ! -f "$HOME/.jdvance/knowledge.json" ]; then
   "gaps": []
 }
 ENDJSON
-    echo "  Created ~/.jdvance/knowledge.json"
+    echo -e "  ${GREEN}+${RESET} Created ~/.jdvance/knowledge.json"
     # Copy dashboard and CLI
     cp "$TMPDIR/jdvance/dashboard.html" "$HOME/.jdvance/dashboard.html"
     cp "$TMPDIR/jdvance/jdvance" "$HOME/.jdvance/jdvance"
     chmod +x "$HOME/.jdvance/jdvance"
-    echo "  Installed dashboard and CLI to ~/.jdvance/"
+    echo -e "  ${GREEN}+${RESET} Installed dashboard and CLI to ~/.jdvance/"
     echo ""
-    echo "  To open your dashboard anytime: ~/.jdvance/jdvance dashboard"
-    echo "  (or add ~/.jdvance to your PATH)"
+    echo -e "  Open your dashboard anytime: ${BOLD}~/.jdvance/jdvance dashboard${RESET}"
   else
-    echo "  Skipped. You can set this up later by running the installer again."
+    echo -e "  ${DIM}Skipped. You can set this up later by running the installer again.${RESET}"
   fi
 else
-  echo "  Global knowledge store found at ~/.jdvance/"
+  echo -e "  ${GREEN}+${RESET} Global knowledge store found at ~/.jdvance/"
 fi
 
 # Clean up temp
 rm -rf "$TMPDIR"
 
 echo ""
-echo "jdvance installed. You now have:"
-echo "  .claude/         — coach persona + 5 modes (/plan /create /review /learn /sync)"
-echo "  .jdvance/       — project knowledge store"
-echo "  dev.md           — your preferences (edit this)"
+echo -e "  ${GREEN}${BOLD}You're set.${RESET} Here's what you have:"
 echo ""
-echo "Run 'claude' to start. The coach will take it from here."
+echo -e "  ${ORANGE}.claude/${RESET}         coach persona + 5 modes"
+echo -e "  ${ORANGE}.jdvance/${RESET}       project knowledge store"
+echo -e "  ${ORANGE}dev.md${RESET}           your preferences ${DIM}(edit this)${RESET}"
 echo ""
-echo "If jdvance helps you, star the repo so others can find it:"
-echo "  https://github.com/MikWess/jdvance"
+echo -e "  Modes: ${BOLD}/plan${RESET}  ${BOLD}/create${RESET}  ${BOLD}/review${RESET}  ${BOLD}/learn${RESET}  ${BOLD}/sync${RESET}"
+echo ""
+echo -e "  Run ${BOLD}claude${RESET} to start. The coach will take it from here."
+echo ""
+echo -e "  ${DIM}If this helps you, star the repo so others can find it:${RESET}"
+echo -e "  ${ORANGE}https://github.com/MikWess/jdvance${RESET}"
+echo ""
+VERBS=("ship something great" "break some stuff" "build something cool" "learn something wild" "make some magic" "crush some code" "hack the planet" "push to prod" "vibe code responsibly" "become dangerous" "level up" "cook something up" "send it" "go full senior" "make Claude proud")
+VERB=${VERBS[$((RANDOM % ${#VERBS[@]}))]}
+echo -e "  ${DIM}Go ${VERB}. — Mikey${RESET}"
+echo ""
