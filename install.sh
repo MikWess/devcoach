@@ -31,6 +31,15 @@ cp "$TMPDIR/devcoach/knowledge.json" .
 # Clean up
 rm -rf "$TMPDIR"
 
+# Add devcoach files to .gitignore if not already there
+if [ -f ".gitignore" ]; then
+  grep -qxF 'knowledge.json' .gitignore || echo 'knowledge.json' >> .gitignore
+  grep -qxF 'dev.md' .gitignore || echo 'dev.md' >> .gitignore
+else
+  printf 'knowledge.json\ndev.md\n' > .gitignore
+fi
+echo "  Added knowledge.json and dev.md to .gitignore"
+
 echo ""
 echo "devcoach installed. You now have:"
 echo "  .claude/     — coach persona + 4 modes (/plan /create /review /learn)"
