@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>devcoach — knowledge dashboard</title>
+  <title>jdvance — knowledge dashboard</title>
   <style>
     :root {
       --bg: #1a1a1a;
@@ -353,12 +353,12 @@
   <div class="container">
     <div id="loader">
       <header>
-        <h1>devcoach <span>/ knowledge dashboard</span></h1>
+        <h1>jdvance <span>/ knowledge dashboard</span></h1>
       </header>
       <div class="drop-zone" id="dropZone">
         <p>Drop your <code>knowledge.json</code> here</p>
         <p style="font-size: 0.75rem; color: var(--text-muted);">
-          Found at <code>.devcoach/knowledge.json</code> (project) or <code>~/.devcoach/knowledge.json</code> (root)
+          Found at <code>.jdvance/knowledge.json</code> (project) or <code>~/.jdvance/knowledge.json</code> (root)
         </p>
         <button class="browse-btn" onclick="document.getElementById('fileInput').click()">or browse</button>
         <input type="file" id="fileInput" class="file-input" accept=".json">
@@ -367,7 +367,7 @@
 
     <div id="dashboard">
       <header>
-        <h1>devcoach <span>/ knowledge dashboard</span></h1>
+        <h1>jdvance <span>/ knowledge dashboard</span></h1>
         <div class="profile">
           <div class="profile-item">dev: <span id="devName">—</span></div>
           <div class="profile-item">project: <span id="devProject">—</span></div>
@@ -443,7 +443,7 @@
       list.innerHTML = '';
 
       if (sorted.length === 0) {
-        list.innerHTML = '<div class="empty-state">No concepts tracked yet. Start a devcoach session to begin.</div>';
+        list.innerHTML = '<div class="empty-state">No concepts tracked yet. Start a jdvance session to begin.</div>';
       }
 
       sorted.forEach(c => {

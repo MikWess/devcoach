@@ -1,4 +1,4 @@
-# My devcoach preferences
+# My jdvance preferences
 
 ## How I like to learn
 <!-- Write in plain english. Examples: -->

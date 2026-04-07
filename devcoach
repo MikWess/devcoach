@@ -1,6 +1,6 @@
 #!/bin/bash
-# devcoach CLI — lightweight commands for the devcoach system
-# Usage: devcoach dashboard
+# jdvance CLI — lightweight commands for the jdvance system
+# Usage: jdvance dashboard
 
 set -e
 
@@ -10,16 +10,16 @@ case "${1:-}" in
   dashboard)
     # Determine which knowledge file to use
     # Priority: project level, then root level
-    if [ -f ".devcoach/knowledge.json" ]; then
-      KNOWLEDGE_FILE=".devcoach/knowledge.json"
-      echo "Loading project knowledge from .devcoach/knowledge.json"
-    elif [ -f "$HOME/.devcoach/knowledge.json" ]; then
-      KNOWLEDGE_FILE="$HOME/.devcoach/knowledge.json"
-      echo "Loading root knowledge from ~/.devcoach/knowledge.json"
+    if [ -f ".jdvance/knowledge.json" ]; then
+      KNOWLEDGE_FILE=".jdvance/knowledge.json"
+      echo "Loading project knowledge from .jdvance/knowledge.json"
+    elif [ -f "$HOME/.jdvance/knowledge.json" ]; then
+      KNOWLEDGE_FILE="$HOME/.jdvance/knowledge.json"
+      echo "Loading root knowledge from ~/.jdvance/knowledge.json"
     else
       echo "No knowledge.json found."
-      echo "  Project: .devcoach/knowledge.json"
-      echo "  Root:    ~/.devcoach/knowledge.json"
+      echo "  Project: .jdvance/knowledge.json"
+      echo "  Root:    ~/.jdvance/knowledge.json"
       exit 1
     fi
 
@@ -30,16 +30,16 @@ case "${1:-}" in
     # Check common locations
     if [ -f "$SCRIPT_DIR/dashboard.html" ]; then
       TEMPLATE="$SCRIPT_DIR/dashboard.html"
-    elif [ -f "$HOME/.devcoach/dashboard.html" ]; then
-      TEMPLATE="$HOME/.devcoach/dashboard.html"
+    elif [ -f "$HOME/.jdvance/dashboard.html" ]; then
+      TEMPLATE="$HOME/.jdvance/dashboard.html"
     else
       echo "dashboard.html not found. Downloading..."
-      curl -sL https://raw.githubusercontent.com/MikWess/devcoach/main/dashboard.html -o /tmp/devcoach-dashboard-template.html
-      TEMPLATE="/tmp/devcoach-dashboard-template.html"
+      curl -sL https://raw.githubusercontent.com/MikWess/jdvance/main/dashboard.html -o /tmp/jdvance-dashboard-template.html
+      TEMPLATE="/tmp/jdvance-dashboard-template.html"
     fi
 
     # Inject data into HTML and write to temp file
-    TMPFILE=$(mktemp /tmp/devcoach-dashboard-XXXXXX.html)
+    TMPFILE=$(mktemp /tmp/jdvance-dashboard-XXXXXX.html)
 
     # Insert the data script right before the closing </head> tag
     DATA_SCRIPT="<script>var __KNOWLEDGE_DATA__ = $KNOWLEDGE_DATA;</script>"
@@ -50,12 +50,12 @@ case "${1:-}" in
     ;;
 
   *)
-    echo "devcoach — your senior dev in the terminal"
+    echo "jdvance — your senior dev in the terminal"
     echo ""
     echo "Commands:"
     echo "  dashboard    Open the knowledge dashboard in your browser"
     echo ""
     echo "To install into a project:"
-    echo "  curl -sL https://raw.githubusercontent.com/MikWess/devcoach/main/install.sh | bash"
+    echo "  curl -sL https://raw.githubusercontent.com/MikWess/jdvance/main/install.sh | bash"
     ;;
 esac

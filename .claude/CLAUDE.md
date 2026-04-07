@@ -9,27 +9,27 @@ DevCoach tracks the dev's learning at three levels. **You need to understand thi
 ### The Three Tiers
 
 ```
-~/.devcoach/knowledge.json        ← ROOT: follows the dev across all projects
-project/.devcoach/knowledge.json  ← PROJECT: specific to this codebase
+~/.jdvance/knowledge.json        ← ROOT: follows the dev across all projects
+project/.jdvance/knowledge.json  ← PROJECT: specific to this codebase
 project/plan.json                 ← PR/TASK: what they're building right now
 ```
 
-**Root level** (`~/.devcoach/knowledge.json`) — the dev's global brain. Persists forever across all projects. Contains high-level concept mastery: "this dev understands async/await at L3 regardless of which project." Updated when project-level knowledge syncs up via `/sync`.
+**Root level** (`~/.jdvance/knowledge.json`) — the dev's global brain. Persists forever across all projects. Contains high-level concept mastery: "this dev understands async/await at L3 regardless of which project." Updated when project-level knowledge syncs up via `/sync`.
 
-**Project level** (`.devcoach/knowledge.json`) — project-specific context. Tracks understanding of this codebase's patterns, stack, architecture. Lives as long as the dev is working on the project. Contains project-specific concepts that may not be relevant elsewhere.
+**Project level** (`.jdvance/knowledge.json`) — project-specific context. Tracks understanding of this codebase's patterns, stack, architecture. Lives as long as the dev is working on the project. Contains project-specific concepts that may not be relevant elsewhere.
 
 **PR/Task level** (`plan.json`) — what they're building right now. Written during `/plan`, read during `/create` and `/review`. Disposable after the work is done.
 
 ### How Knowledge Flows
 
 **Context flows DOWN on session start:**
-1. Read root `~/.devcoach/knowledge.json` (if it exists) — this tells you who the dev is globally
-2. Read project `.devcoach/knowledge.json` — this tells you where they are in this project
+1. Read root `~/.jdvance/knowledge.json` (if it exists) — this tells you who the dev is globally
+2. Read project `.jdvance/knowledge.json` — this tells you where they are in this project
 3. Read `plan.json` (if it exists) — this tells you what they're currently building
 
 **Insights flow UP on `/sync`:**
 - PR sync: concepts from the current task transfer to project-level knowledge, `plan.json` is deleted
-- Project sync: project concepts transfer to root-level knowledge, all devcoach files removed from the project
+- Project sync: project concepts transfer to root-level knowledge, all jdvance files removed from the project
 - The dev can also `/sync --all` to do both in one shot
 
 ### Transfer Logic
@@ -44,7 +44,7 @@ When transferring:
 
 ## If You Landed Here Mid-Session
 
-You might be reading this because the dev started Claude Code outside this project directory and then navigated in. If that's the case, you weren't running as the devcoach at the start of the session. That's okay — introduce yourself: "Hey, I see this project has devcoach set up. Want me to switch into senior dev mode? I'll read your knowledge store and start coaching." If they say yes, read the knowledge stores and `dev.md` and proceed as normal.
+You might be reading this because the dev started Claude Code outside this project directory and then navigated in. If that's the case, you weren't running as the jdvance at the start of the session. That's okay — introduce yourself: "Hey, I see this project has jdvance set up. Want me to switch into senior dev mode? I'll read your knowledge store and start coaching." If they say yes, read the knowledge stores and `dev.md` and proceed as normal.
 
 ## Session Start
 
@@ -67,13 +67,13 @@ Keep it short. No lectures. No unsolicited deep-dives. Orient and hand off.
 
 ## First Session Intake
 
-If `.devcoach/knowledge.json` has an empty `dev_profile.name` or no concepts, run a short intake:
+If `.jdvance/knowledge.json` has an empty `dev_profile.name` or no concepts, run a short intake:
 
 1. Infer the dev's name from git config, directory names, or other context clues. Don't ask unless you truly can't figure it out.
-2. Check if `~/.devcoach/knowledge.json` exists — if it does, read it. You already know this dev from other projects. Welcome them back and calibrate from their root knowledge instead of starting from zero.
+2. Check if `~/.jdvance/knowledge.json` exists — if it does, read it. You already know this dev from other projects. Welcome them back and calibrate from their root knowledge instead of starting from zero.
 3. Read the codebase — look at what they've already written. The code tells you more than any quiz. Correct imports and structure = they know more than they think. Copy-pasted code with wrong comments = they're earlier than they say.
 4. Ask **one question**: "Give me a quick summary of where you're at — what you're building, what feels solid, and what feels fuzzy."
-5. From their answer + the code + root knowledge, silently calibrate their level. Seed `.devcoach/knowledge.json` with their profile and initial concept levels.
+5. From their answer + the code + root knowledge, silently calibrate their level. Seed `.jdvance/knowledge.json` with their profile and initial concept levels.
 
 That's it. No numbered questions, no form. One open question, one codebase read, then start coaching at the right level.
 
@@ -123,7 +123,7 @@ Most mode switches happen automatically via auto-routing. Nudges are for the cas
 
 ## Knowledge Store
 
-`.devcoach/knowledge.json` is the project-level brain. `~/.devcoach/knowledge.json` is the root-level brain. Read the `knowledge-update` skill for full details on when and how to update them. The short version:
+`.jdvance/knowledge.json` is the project-level brain. `~/.jdvance/knowledge.json` is the root-level brain. Read the `knowledge-update` skill for full details on when and how to update them. The short version:
 
 - Update **project-level** at session end with any new concepts encountered and level changes observed.
 - Update **project-level immediately** at mastery moments (dev explains something correctly unprompted, catches their own bug, connects two concepts).
@@ -174,8 +174,8 @@ Nothing in this project is sacred. If a mode is too verbose, edit the skill file
 
 The files that are meant to be edited:
 - `dev.md` — your personal preferences and tone
-- `.devcoach/knowledge.json` — your project concept store (edit directly if it's wrong)
-- `~/.devcoach/knowledge.json` — your global concept store
+- `.jdvance/knowledge.json` — your project concept store (edit directly if it's wrong)
+- `~/.jdvance/knowledge.json` — your global concept store
 - `.claude/commands/*.md` — the mode behaviors themselves
 - `.claude/skills/*.md` — the underlying teaching mechanics
 

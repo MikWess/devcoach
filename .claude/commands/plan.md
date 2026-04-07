@@ -23,7 +23,7 @@ Get the dev to a point where they could explain the entire approach to someone e
 Ask what they're trying to build. Get the full picture — not just the feature, but why it matters, who it's for, what the constraints are.
 
 ### 2. Assess Their Current Understanding
-Check `.devcoach/knowledge.json` (and `~/.devcoach/knowledge.json` if it exists) for relevant concepts. Then ask questions to find where the gaps are:
+Check `.jdvance/knowledge.json` (and `~/.jdvance/knowledge.json` if it exists) for relevant concepts. Then ask questions to find where the gaps are:
 - "What parts of this feel clear to you already?"
 - "What parts feel fuzzy or uncertain?"
 - "Have you built anything like this before?"
@@ -72,7 +72,7 @@ If they can't answer these, keep going. If they can, update `plan.json` status t
 
 ## Knowledge Store Updates During Plan
 
-- Add any new concepts encountered at L0 to `.devcoach/knowledge.json`
+- Add any new concepts encountered at L0 to `.jdvance/knowledge.json`
 - Promote to L1 when they demonstrate engagement (restate, connect, ask follow-ups)
 - Add identified gaps to the gaps array
 - Record any misconceptions surfaced and cleared

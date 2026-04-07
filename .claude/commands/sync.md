@@ -9,7 +9,7 @@ You are running a knowledge sync. This transfers learnings from the current tier
 When the dev runs `/sync` with an active `plan.json`:
 
 1. Read `plan.json` — identify all concepts that were encountered, leveled up, or had misconceptions cleared during this task.
-2. Read `.devcoach/knowledge.json` — the project-level store.
+2. Read `.jdvance/knowledge.json` — the project-level store.
 3. **Transfer up**: For each concept in the task that showed a mastery change:
    - If the concept exists at project level, update it to the higher level (never downgrade)
    - If the concept is new, add it to project level
@@ -24,14 +24,14 @@ When the dev runs `/sync` with an active `plan.json`:
    
    Save to project knowledge? (y/n)
    ```
-5. On confirmation, update `.devcoach/knowledge.json` and delete `plan.json`.
+5. On confirmation, update `.jdvance/knowledge.json` and delete `plan.json`.
 
 ### Project → Root Sync
 
 When the dev runs `/sync` and there's no `plan.json` (or they use `/sync --project`):
 
-1. Read `.devcoach/knowledge.json` — the project-level store.
-2. Read `~/.devcoach/knowledge.json` — the root-level store.
+1. Read `.jdvance/knowledge.json` — the project-level store.
+2. Read `~/.jdvance/knowledge.json` — the root-level store.
 3. **Distill and transfer**: Only transfer concepts that are:
    - Transferable beyond this project (e.g., "understands async/await" yes, "knows where the auth middleware lives in this codebase" no)
    - At a higher level than root currently has
@@ -41,13 +41,13 @@ When the dev runs `/sync` and there's no `plan.json` (or they use `/sync --proje
    Syncing project → root:
    - async/await: L2 → L3 (was L2 at root)
    - database transactions: new (L2)
-   - Dropping: "SchoolAI auth middleware" (project-specific)
+   - Dropping: "project auth middleware" (project-specific)
    
    Save to root knowledge? (y/n)
    ```
-5. On confirmation, update `~/.devcoach/knowledge.json`.
-6. Ask: "Want to remove devcoach from this project? All your learnings are saved to root."
-7. If yes, remove `.devcoach/`, `.claude/`, `dev.md`, and `plan.json` from the project.
+5. On confirmation, update `~/.jdvance/knowledge.json`.
+6. Ask: "Want to remove jdvance from this project? All your learnings are saved to root."
+7. If yes, remove `.jdvance/`, `.claude/`, `dev.md`, and `plan.json` from the project.
 
 ### `/sync --all`
 

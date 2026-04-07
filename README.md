@@ -1,10 +1,10 @@
-# devcoach
+# J.D. VANCE
 
 A senior dev in your terminal. Claude Code skills that coach junior devs through planning, building, reviewing, and learning — backed by a three-tier knowledge system that tracks what you understand and grows with you over time.
 
 ## What is this?
 
-devcoach is a set of Claude Code skills that turn your terminal into a pair programming session with a patient, demanding senior developer. It doesn't write code for you — it makes sure you understand everything you're building, flags risks you haven't thought about, and grows with you over time.
+jdvance is a set of Claude Code skills that turn your terminal into a pair programming session with a patient, demanding senior developer. It doesn't write code for you — it makes sure you understand everything you're building, flags risks you haven't thought about, and grows with you over time.
 
 ## Modes
 
@@ -28,16 +28,16 @@ Transfers your learnings up to the next tier and cleans up. Task → project, or
 Knowledge lives at three levels, and insights flow upward:
 
 ```
-~/.devcoach/knowledge.json         ← ROOT: follows you across all projects
-project/.devcoach/knowledge.json   ← PROJECT: specific to this codebase  
+~/.jdvance/knowledge.json         ← ROOT: follows you across all projects
+project/.jdvance/knowledge.json   ← PROJECT: specific to this codebase  
 project/plan.json                  ← TASK: what you're building right now
 ```
 
 **Task level** (`plan.json`) — written during `/plan`, tracks your current task. Steps, risks, concepts involved. Disposable after the work is done.
 
-**Project level** (`.devcoach/knowledge.json`) — tracks your understanding within this project. Updated automatically during sessions.
+**Project level** (`.jdvance/knowledge.json`) — tracks your understanding within this project. Updated automatically during sessions.
 
-**Root level** (`~/.devcoach/knowledge.json`) — your global brain. Persists across all projects. Only updated via `/sync` when you finish a project.
+**Root level** (`~/.jdvance/knowledge.json`) — your global brain. Persists across all projects. Only updated via `/sync` when you finish a project.
 
 When you `/sync`, learnings transfer up and the current tier cleans up. When you start a new project, the coach reads your root knowledge and already knows you.
 
@@ -55,7 +55,7 @@ When you `/sync`, learnings transfer up and the current tier cleans up. When you
 One command from inside any project:
 
 ```bash
-curl -sL https://raw.githubusercontent.com/MikWess/devcoach/main/install.sh | bash
+curl -sL https://raw.githubusercontent.com/MikWess/jdvance/main/install.sh | bash
 ```
 
 That's it. It drops the coach files into your project and asks if you want to set up a global knowledge store. Then:
@@ -93,7 +93,7 @@ Everything is editable. The skill files in `.claude/commands/` and `.claude/skil
 ## File Structure
 
 ```
-~/.devcoach/
+~/.jdvance/
   knowledge.json           ← root-level knowledge (global, optional)
 
 project/
@@ -109,7 +109,7 @@ project/
       knowledge-update.md  ← when/how knowledge stores update
       socratic-method.md   ← teaching by questioning
       youtube-search.md    ← surfacing video resources
-  .devcoach/
+  .jdvance/
     knowledge.json         ← project-level knowledge
   dev.md                   ← your personal preferences
   plan.json                ← current task plan (auto-generated)
@@ -118,10 +118,10 @@ project/
 ## Uninstall
 
 From inside a project:
-- `/sync` to save your learnings to root, then it removes all devcoach files
-- Or manually: `rm -rf .claude .devcoach dev.md plan.json`
+- `/sync` to save your learnings to root, then it removes all jdvance files
+- Or manually: `rm -rf .claude .jdvance dev.md plan.json`
 
-To remove the global store: `rm -rf ~/.devcoach`
+To remove the global store: `rm -rf ~/.jdvance`
 
 ## Philosophy
 

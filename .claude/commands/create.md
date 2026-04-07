@@ -61,7 +61,7 @@ Flag these immediately even during quiet mode. Prefix with: "Quick flag —" so 
 
 ## Knowledge Store Updates During Create
 
-- Update `.devcoach/knowledge.json`:
+- Update `.jdvance/knowledge.json`:
   - Promote concepts from L1 to L2 when the dev reaches for them independently in code
   - Add new concepts at L0 when they appear in the code for the first time
   - Record misconceptions surfaced during code review moments

@@ -7,8 +7,8 @@ This skill governs when and how to update the knowledge stores. All five modes d
 Knowledge lives at three levels:
 
 - **`plan.json`** (PR/task level) — written by `/plan`, tracks the current task. Disposable.
-- **`.devcoach/knowledge.json`** (project level) — tracks concepts within this project. Updated during sessions.
-- **`~/.devcoach/knowledge.json`** (root level) — tracks concepts across all projects. Updated only via `/sync`.
+- **`.jdvance/knowledge.json`** (project level) — tracks concepts within this project. Updated during sessions.
+- **`~/.jdvance/knowledge.json`** (root level) — tracks concepts across all projects. Updated only via `/sync`.
 
 During normal sessions, you read all three but only write to project level. Root is updated exclusively through `/sync`.
 
