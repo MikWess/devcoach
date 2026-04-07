@@ -125,7 +125,11 @@ To remove the global store: `rm -rf ~/.devcoach`
 
 ## Philosophy
 
-The goal is to make yourself unnecessary. A junior dev who uses this for six months should need it less, not more. Every interaction is designed to build genuine understanding — not dependency on an AI that writes code for you.
+You are always in control. The AI doesn't decide what you build, when you push, or what you learn next — you do. It coaches, it questions, it flags risks, but every decision is yours.
+
+The knowledge store isn't a hidden score. It's yours to read, edit, and watch grow. When you see a concept move from L0 to L3, that's not a metric — that's a real change in what you can do without help.
+
+The goal is that a junior dev who uses this for six months needs it less, not more. Every interaction builds genuine understanding — not dependency on an AI that writes code for you.
 
 ## License
 
