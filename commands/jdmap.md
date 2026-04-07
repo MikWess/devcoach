@@ -1,6 +1,6 @@
 # /jdmap — Map the Concept You're Learning
 
-Generate a visual concept map of **what the dev is currently trying to understand** — not their score, but how the pieces fit together.
+Generate a visual concept map of **what the dev is currently trying to understand** — not their score, but how the pieces fit together and what they need to learn next.
 
 ## How It Works
 
@@ -8,37 +8,45 @@ Generate a visual concept map of **what the dev is currently trying to understan
 2. Identify the core concepts involved and how they relate to each other.
 3. Build a dependency map: "you need to understand X before Y makes sense."
 4. If a knowledge store exists, check what the dev already understands (L2+) vs what's still fuzzy (L0-L1) and highlight accordingly.
-5. Generate the HTML and open it.
+5. Organize the map from **where the dev is now** (bottom) flowing **up** to where they need to get (top). Learning flows upward.
+6. Generate the HTML and open it.
 
 ## What to Generate
 
-Create a single self-contained HTML file:
+Create a single self-contained HTML file. Think **Mermaid diagram aesthetic** — clean, white, minimal, readable.
 
 ### Layout
-- The **current topic** is the central node (large, highlighted in orange #d97706)
-- **Supporting concepts** branch out from it, organized by dependency — things you need to know first are higher/left, things that build on the core are lower/right
-- **Connections** show how concepts relate — labeled with short descriptions like "uses", "requires", "enables"
-- Nodes are color-coded by the dev's understanding:
-  - Solid green border: dev understands this (L2+ in knowledge store)
-  - Solid blue border: dev has seen this but it's still building (L1)
-  - Dashed gray border: dev hasn't encountered this yet or it's fuzzy (L0 or not tracked)
-  - Red dashed border: identified gap
+- **Top-down flow**: the goal/topic is at the top, prerequisites flow downward. The dev reads bottom-to-top as a learning path.
+- The **current topic** is the top node (highlighted with a soft blue background)
+- **Prerequisite concepts** branch downward — things you need to understand first
+- **Connections** are labeled arrows showing relationships: "requires", "uses", "enables", "builds on"
+- Tree-like structure, not a messy web. Keep it organized.
 
 ### Node Content
-- Concept name
-- One-line description of what it is
-- Why it matters for the current topic
+- Concept name (bold)
+- One-line description
+- Small badge showing the dev's level if tracked (L0/L1/L2/L3)
+
+### Node Styling by Understanding
+- **Solid fill, green left border**: dev understands this (L2+ in knowledge store)
+- **Solid fill, blue left border**: dev has seen this, still building (L1)
+- **Light gray fill, dashed border**: dev hasn't encountered this yet (L0 or not tracked)
+- **Light red fill, red left border**: identified gap
 
 ### Style
-- Dark background (#1a1a1a), monospace font
-- Claude Code aesthetic — clean, minimal
-- Nodes should be draggable
-- Use basic CSS/JS — no external dependencies, everything inline
-- Title: "jdmap — [current topic]"
+- **White/light background** (#ffffff or #fafafa)
+- Light gray lines and borders (#e5e7eb)
+- Clean sans-serif font (system font stack)
+- Mermaid-like: boxy nodes, rounded corners, labeled arrows
+- Generous whitespace, nothing cramped
+- Title at top: "jdmap — [current topic]"
+- Subtitle: "learning path — read bottom to top"
+- No external dependencies, everything inline CSS/JS
 
 ### Interactivity
-- Click a node to see: a 2-3 sentence explanation of the concept and how it connects to what the dev is building
-- Hover highlights all connected nodes
+- Click a node to expand: 2-3 sentence explanation + how it connects to the main topic
+- Hover highlights the node and its direct connections
+- Nodes are draggable for rearranging
 
 ## How to Display
 
@@ -49,14 +57,23 @@ Create a single self-contained HTML file:
 ## Examples
 
 If the dev is learning about `useCallback` in a React component:
-- Central node: **useCallback**
-- Branches: React re-renders → why functions get recreated → memoization → dependency arrays → when to use vs not
-- If they already understand functions and state: those nodes are green
-- If dependency arrays are fuzzy: that node is dashed gray
-
-If the dev is learning about MCP servers:
-- Central node: **MCP Server**
-- Branches: JSON-RPC → stdio transport → tool registration → handlers → client-server lifecycle
-- Shows the learning path: "understand JSON-RPC before transport makes sense"
+```
+                    ┌─────────────────┐
+                    │   useCallback   │  ← goal: understand this
+                    └────────┬────────┘
+                             │ requires
+                    ┌────────┴────────┐
+                    │  memoization    │
+                    └────────┬────────┘
+                             │ requires
+              ┌──────────────┼──────────────┐
+     ┌────────┴────────┐           ┌────────┴────────┐
+     │  re-renders     │           │ dependency arrays│
+     └────────┬────────┘           └─────────────────┘
+              │ requires
+     ┌────────┴────────┐
+     │  React state    │  ← dev already gets this (green)
+     └─────────────────┘
+```
 
 $ARGUMENTS
