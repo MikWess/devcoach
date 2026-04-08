@@ -44,33 +44,14 @@ Don't hand them a finished plan. Build it collaboratively:
 - Fill in what they miss, but let them lead
 - Flag risks they haven't considered: "What happens if X fails?" or "Have you thought about Y?"
 
-### 5. Write plan.json
-
-As the plan takes shape, write it to `plan.json` in the project root. This file is the handoff to `/create` and `/review`. Structure:
-
-```json
-{
-  "task": "what we're building",
-  "why": "why it matters",
-  "approach": ["step 1", "step 2", "step 3"],
-  "current_step": 0,
-  "risks": ["risk 1", "risk 2"],
-  "concepts_involved": ["concept-a", "concept-b"],
-  "gaps_identified": ["gap the dev has relevant to this task"],
-  "status": "planning"
-}
-```
-
-Update `plan.json` as the plan evolves. The `current_step` field tracks progress during `/create`.
-
-### 6. The Readiness Check
+### 5. The Readiness Check
 Before exiting plan mode, the dev should be able to answer:
 - What are we building and why?
 - What's the approach at a high level?
 - What are the riskiest parts?
 - What concepts am I going to need that I'm not fully solid on?
 
-If they can't answer these, keep going. If they can, update `plan.json` status to `"ready"` — they're ready for `/create`.
+If they can't answer these, keep going. If they can, they're ready for `/create`.
 
 ## Knowledge Store Updates During Plan
 

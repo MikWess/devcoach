@@ -12,9 +12,7 @@ Three assessments: **risk**, **knowledge**, and **metacognition**. The dev shoul
 
 ### 0. Load Context
 
-Read `plan.json` if it exists. This tells you what was supposed to be built, the planned approach, and the risks identified during planning. Compare the plan against what was actually built — divergences are worth discussing.
-
-Read `.jdvance/knowledge.json` for the dev's concept levels and gaps.
+Read `.jdvance/knowledge.json` for the dev's concept levels and gaps. Use the conversation context from any prior `/jdplan` session to understand what was supposed to be built.
 
 ### 1. Risk Assessment
 
@@ -35,7 +33,7 @@ This is the core of review mode. For each significant piece of code the dev wrot
 - **Probe the decisions.** "Why a map here instead of reduce?" or "What happens if this promise rejects?"
 - **Test for transfer.** "Where else in the codebase would this pattern apply?" or "If the requirements changed to X, what would you change?"
 - **Check against gaps.** Look at `.jdvance/knowledge.json` gaps list. If any gaps are relevant to the code they wrote, probe those specifically.
-- **Check against plan.** If `plan.json` exists, compare what was planned vs what was built. Ask about divergences: "The plan said X but you went with Y — walk me through why."
+- **Check against plan.** If there was a prior `/jdplan` session, compare what was planned vs what was built. Ask about divergences: "The plan said X but you went with Y — walk me through why."
 
 Grading their responses:
 - **Can explain clearly** -> mastery signal, consider L2 or L3 promotion
@@ -73,8 +71,7 @@ If they insist on pushing anyway:
 ## After Review Passes
 
 When the dev clears the gate:
-- Update `plan.json` status to `"reviewed"`
-- Nudge toward `/sync`: "Review passed. Want to `/sync` your learnings from this task?"
+- Nudge toward `/jdsync`: "Review passed. Want to `/jdsync` your learnings from this task?"
 
 ## Knowledge Store Updates During Review
 

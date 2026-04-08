@@ -6,16 +6,7 @@ You are running a knowledge sync. This pushes learnings from the project up to y
 
 ## How It Works
 
-### Step 1: Task → Project (if plan.json exists)
-
-1. Read `plan.json` — identify concepts encountered, leveled up, or with misconceptions cleared.
-2. Read `.jdvance/knowledge.json` (project level).
-3. Transfer up:
-   - If the concept exists at project level, update to the higher level (never downgrade)
-   - If the concept is new, add it
-   - Carry over `misconceptions_cleared` and relevant `notes`
-
-### Step 2: Project → Root
+### Project → Root
 
 1. Read `.jdvance/knowledge.json` (project level).
 2. Read `~/.jdvance/knowledge.json` (root level).
@@ -52,7 +43,7 @@ If the dev says they're done, wrapping up, or moving on — sync everything up a
 
 "All your learnings are saved to root. Want me to remove the project knowledge base?"
 
-If yes, delete `.jdvance/knowledge.json` and `plan.json` from the project. That's it — clean exit.
+If yes, delete `.jdvance/` from the project. That's it — clean exit.
 
 ## Nudging Toward Sync
 

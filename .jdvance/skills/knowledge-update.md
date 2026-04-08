@@ -2,15 +2,14 @@
 
 This skill governs when and how to update the knowledge stores. All five modes depend on this.
 
-## The Three Tiers
+## The Two Tiers
 
-Knowledge lives at three levels:
+Knowledge lives at two levels:
 
-- **`plan.json`** (PR/task level) — written by `/plan`, tracks the current task. Disposable.
 - **`.jdvance/knowledge.json`** (project level) — tracks concepts within this project. Updated during sessions.
 - **`~/.jdvance/knowledge.json`** (root level) — tracks concepts across all projects. Updated only via `/sync`.
 
-During normal sessions, you read all three but only write to project level. Root is updated exclusively through `/sync`.
+During normal sessions, you read both but only write to project level. Root is updated exclusively through `/sync`.
 
 ## The Habit Check
 

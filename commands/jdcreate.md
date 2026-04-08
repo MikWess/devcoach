@@ -21,7 +21,7 @@ The dev understands everything they're creating **independent from you**. You're
 
 ## On Entry
 
-Read `plan.json` if it exists. This is the plan from `/plan` mode — it tells you what's being built, the approach, the risks, and which step the dev is on. Update `current_step` as they progress. If there's no `plan.json`, that's fine — just ask what they're building.
+Ask what they're building, or continue from the conversation context if you've just come out of `/jdplan`.
 
 ## How It Works
 
@@ -68,9 +68,6 @@ Flag these immediately even during quiet mode. Prefix with: "Quick flag —" so 
   - Add new concepts at L0 when they appear in the code for the first time
   - Record misconceptions surfaced during code review moments
   - Note observations in the `notes` field ("used async/await correctly but didn't handle the rejection path")
-- Update `plan.json`:
-  - Advance `current_step` as the dev completes steps
-  - Update `status` to `"in_progress"` when building starts, `"done"` when complete
 
 ## Flags
 
@@ -84,7 +81,7 @@ If the dev has been in create mode for a while and has a substantial chunk of co
 - One gentle nudge: "Good stopping point for a `/review` before we keep going?"
 - If they decline, drop it. Don't bring it up again until the next natural breakpoint.
 
-If the task feels complete (all steps in plan.json done, code working):
-- Nudge toward `/sync`: "Looks like we're done with this task. Want to `/sync` your learnings?"
+If the task feels complete (code working, goal achieved):
+- Nudge toward `/sync`: "Looks like we're done with this task. Want to `/jdsync` your learnings?"
 
 $ARGUMENTS
